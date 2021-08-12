@@ -2,8 +2,12 @@
 name = "smartcow"
 version = "0.1.0"
 edition = "2018"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+description = "a cow for smartstrings"
+readme = "README.md"
+repository = "https://github.com/jbr/smartcow"
+documentation = "https://docs.rs/smartcow"
+license = "MIT OR Apache-2.0"
+keywords = ["cow", "smartstring"]
 
 [dependencies]
 smartstring = "0.2.9"
