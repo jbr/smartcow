@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["SmartCow","The primary type for this crate, which holds either a borrowed str or a [`SmartString`]"]]});
