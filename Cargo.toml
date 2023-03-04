@@ -10,4 +10,4 @@ license = "MIT OR Apache-2.0"
 keywords = ["cow", "smartstring"]
 
 [dependencies]
-smartstring = "1.0.0"
+smartstring = "1.0.1"

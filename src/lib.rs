@@ -16,7 +16,7 @@ convenience trait implementations.
 */
 use smartstring::{LazyCompact, SmartString};
 use std::{
-    borrow::Cow,
+    borrow::{Borrow, Cow},
     fmt::{Debug, Display, Formatter, Result},
     hash::{Hash, Hasher},
     ops::Deref,
@@ -55,6 +55,16 @@ impl SmartCow<'_> {
         match self {
             SmartCow::Borrowed(b) => SmartCow::Owned(SmartString::from(b)),
             SmartCow::Owned(o) => SmartCow::Owned(o),
+        }
+    }
+
+    /// Returns a borrowed SmartCow with a shorter lifetime than the
+    /// source. Borrowed variants will be reborrowed, and owned
+    /// variants will be borrowed.
+    pub fn borrow(&self) -> SmartCow<'_> {
+        match self {
+            SmartCow::Borrowed(b) => SmartCow::Borrowed(b),
+            SmartCow::Owned(o) => SmartCow::Borrowed(o),
         }
     }
 }
@@ -99,13 +109,13 @@ impl Debug for SmartCow<'_> {
 
 impl Display for SmartCow<'_> {
     fn fmt(&self, f: &mut Formatter<'_>) -> Result {
-        f.write_str(&**self)
+        f.write_str(self)
     }
 }
 
 impl AsRef<str> for SmartCow<'_> {
     fn as_ref(&self) -> &str {
-        &*self
+        self
     }
 }
 
@@ -142,14 +152,29 @@ impl From<SmartString<LazyCompact>> for SmartCow<'_> {
     }
 }
 
+impl From<SmartCow<'_>> for SmartString<LazyCompact> {
+    fn from(value: SmartCow<'_>) -> Self {
+        match value {
+            SmartCow::Borrowed(b) => b.into(),
+            SmartCow::Owned(o) => o,
+        }
+    }
+}
+
 impl Deref for SmartCow<'_> {
     type Target = str;
 
     fn deref(&self) -> &Self::Target {
         match self {
-            Self::Borrowed(b) => *b,
+            Self::Borrowed(b) => b,
             Self::Owned(o) => o,
         }
+    }
+}
+
+impl Borrow<str> for SmartCow<'_> {
+    fn borrow(&self) -> &str {
+        self
     }
 }
 
