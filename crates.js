@@ -1,0 +1,1 @@
+window.ALL_CRATES = ["smartcow","smartstring","static_assertions"];

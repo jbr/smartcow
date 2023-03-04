@@ -1,0 +1,4 @@
+(function() {var implementors = {
+"smartcow":[["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/1.67.1/core/fmt/trait.Display.html\" title=\"trait core::fmt::Display\">Display</a> for <a class=\"enum\" href=\"smartcow/enum.SmartCow.html\" title=\"enum smartcow::SmartCow\">SmartCow</a>&lt;'_&gt;"]],
+"smartstring":[["impl&lt;Mode:&nbsp;<a class=\"trait\" href=\"smartstring/trait.SmartStringMode.html\" title=\"trait smartstring::SmartStringMode\">SmartStringMode</a>&gt; <a class=\"trait\" href=\"https://doc.rust-lang.org/1.67.1/core/fmt/trait.Display.html\" title=\"trait core::fmt::Display\">Display</a> for <a class=\"struct\" href=\"smartstring/struct.SmartString.html\" title=\"struct smartstring::SmartString\">SmartString</a>&lt;Mode&gt;"]]
+};if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
