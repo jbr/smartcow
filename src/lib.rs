@@ -62,10 +62,7 @@ impl SmartCow<'_> {
     /// source. Borrowed variants will be reborrowed, and owned
     /// variants will be borrowed.
     pub fn borrow(&self) -> SmartCow<'_> {
-        match self {
-            SmartCow::Borrowed(b) => SmartCow::Borrowed(b),
-            SmartCow::Owned(o) => SmartCow::Borrowed(o),
-        }
+        SmartCow::from(&**self)
     }
 }
 
